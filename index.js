@@ -1,13 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import projectsRouter from './routes/projects.js';
 import pool from './db.js';
+import projectsRouter from './routes/projects.js';
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8000;
-
 app.use(express.json());
 
 app.get('/', async (req, res) => {
@@ -21,6 +19,7 @@ app.get('/', async (req, res) => {
 
 app.use('/projects', projectsRouter);
 
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
